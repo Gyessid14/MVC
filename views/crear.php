@@ -8,7 +8,7 @@
 <body>
     <div class="container mt-5">
         <h1>Crear Nueva Tarea</h1>
-        <form action="" method="post">
+        <form action="index.php?accion=guardar" method="post">
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" name="titulo" required>

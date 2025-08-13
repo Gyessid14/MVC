@@ -13,11 +13,30 @@ class TareaController {
     }
 
     //mostrar tareas
-    public function home() {
+    public function index() {
         $tareas = $this->tareaModel->leer();
         include 'views/home.php';
     }
 
+    //crear tareas
+    public function crear() {
+        include 'views/crear.php';
+    }
+
+    //guardar tareas
+    public function guardar() {
+        if ($_POST) {
+            $titulo = $_POST['titulo'];
+            $descripcion = $_POST['descripcion'];
+
+            if ($this->tareaModel->crear($titulo, $descripcion)) {
+                header("Location: index.php");
+            } else {
+                echo "Error al guardar la tarea.";
+            }
+        }
+
+    }
 }
 
 ?>
