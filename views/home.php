@@ -28,11 +28,11 @@
                     <td><?php echo ($row['titulo']) ?></td>
                     <td><?php echo ($row['descripcion']) ?></td>
                     <td>
-                        <a href="" class="btn btn-warning btn-sm">Editar</a>
-                        <a href="" class="btn btn-danger btn-sm" onclick="">Eliminar</a>
+                        <a href="index.php?accion=editar&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="index.php?accion=eliminar&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="">Eliminar</a>
                     </td>
                 </tr>
-               <?php endwhile; ?>
+               <?php endwhile; ?>   
                
             </tbody>
         </table>

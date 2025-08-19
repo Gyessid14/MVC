@@ -33,4 +33,45 @@ class TareaModel {           // Definición de la clase TareaModel
         }
         return false;                          // Si no fue exitosa, retorna false
     }
+
+
+    public function leerUno($id) {
+    $query = "SELECT titulo, descripcion FROM " . $this->table_name . " WHERE id = ? LIMIT 1";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(1, $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+        return $row;
+    }
+    return null;
+}
+
+public function actualizar($id, $titulo, $descripcion) {
+    $query = "UPDATE " . $this->table_name . " SET titulo = :titulo, descripcion = :descripcion WHERE id = :id";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(":titulo", $titulo);
+    $stmt->bindParam(":descripcion", $descripcion);
+    $stmt->bindParam(":id", $id);
+
+    if ($stmt->execute()) {
+        return true;
+    }
+    return false;
+}
+
+public function eliminar($id) {
+    $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(":id", $id);
+
+    if ($stmt->execute()) {
+        return true;
+    }
+    return false;   
+}
 }

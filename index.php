@@ -10,6 +10,15 @@
         case 'guardar':
             $controller->guardar();
             break;
+        case 'editar':
+            $controller->editar();
+            break;
+        case 'actualizar':
+            $controller->actualizar();
+            break;
+        case 'eliminar':
+            $controller->eliminar();
+            break;
         default:
             $controller->index();
             break;
@@ -17,4 +26,4 @@
 
     }
 
-?>
+?>  
