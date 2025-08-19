@@ -9,7 +9,7 @@ class TareaModel {           // Definición de la clase TareaModel
 
     //consultar tareas
     public function leer() {                        // Método para leer todas las tareas
-        $query = "SELECT id, titulo, descripcion, fecha_creacion FROM " . $this->table_name . " ORDER BY fecha_creacion DESC"; // Consulta SQL para obtener las tareas ordenadas por fecha de creación descendente
+        $query = "SELECT id, titulo, descripcion, fecha_creacion FROM " . $this->table_name . " WHERE estado = '1' ORDER BY fecha_creacion DESC"; // Consulta SQL para obtener las tareas ordenadas por fecha de creación descendente
 
         $stmt = $this->conn->prepare($query);   // Prepara la consulta SQL
         $stmt->execute();                      // Ejecuta la consulta
@@ -64,10 +64,10 @@ public function actualizar($id, $titulo, $descripcion) {
 }
 
 public function eliminar($id) {
-    $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+    $query = "UPDATE " . $this->table_name . " SET estado = '0' WHERE id = ?"; // Cambia el estado a 'eliminado' en lugar de eliminar físicamente
 
     $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(":id", $id);
+    $stmt->bindParam(1, $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
         return true;

@@ -29,7 +29,7 @@
                     <td><?php echo ($row['descripcion']) ?></td>
                     <td>
                         <a href="index.php?accion=editar&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                        <a href="index.php?accion=eliminar&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="">Eliminar</a>
+                        <a href="index.php?accion=eliminar&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarea?');">Eliminar</a>
                     </td>
                 </tr>
                <?php endwhile; ?>   
